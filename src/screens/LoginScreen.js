@@ -1,32 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
-import { style } from './style'; 
+import { style } from '../pages/login/style'; 
 import Logo from '../../assets/logo.png'; 
-import { themas } from "../../global/themes"; 
+import { themas } from "../global/themes"; 
+import { useNavigation } from '@react-navigation/native'; // Importar useNavigation
 
 const LoginScreen = () => {
-    const [email, setEmail] = useState(''); // Estado para o email
-    const [password, setPassword] = useState(''); // Estado para a senha
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigation = useNavigation(); // Usar o hook de navegação
 
-    function getLogin() {
-        try {
-            // Verifica se os campos obrigatórios estão preenchidos
-            if (!email || !password) {
-                console.log('Informe os campos obrigatórios');
-                return;
-            }   
+    const getLogin = () => {
+        if (!email || !password) {
+            console.log('Informe os campos obrigatórios');
+            return;
+        }   
 
-            // Verifica as credenciais
-            if (email === 'emilybiecoski@hotmail.com' && password === '123456') {
-                console.log('Logado com sucesso');
-                // Aqui você pode adicionar a navegação para a próxima tela ou outra ação
-            } else {
-                console.log('Usuário incorreto');
-            }
-        } catch (error) {
-            console.log(error);
+        if (email === 'emilybiecoski@hotmail.com' && password === '123456') {
+            console.log('Logado com sucesso');
+            // Aqui você pode adicionar a navegação para a próxima tela ou outra ação
+        } else {
+            console.log('Usuário incorreto');
         }
-    }
+    };
 
     return (
         <View style={style.container}>
@@ -43,7 +39,7 @@ const LoginScreen = () => {
                         placeholder="Username"
                         placeholderTextColor="grey"
                         value={email}
-                        onChangeText={(e)=>setEmail(e)}
+                        onChangeText={setEmail}
                     />
                 </View>
 
@@ -53,9 +49,9 @@ const LoginScreen = () => {
                         style={style.input}
                         placeholder="Digite sua senha"
                         placeholderTextColor="grey"
-                        secureTextEntry={true}
+                        secureTextEntry
                         value={password}
-                        onChangeText={(e)=>setPassword(e)}
+                        onChangeText={setPassword}
                     />
                 </View>
             </View>
@@ -68,7 +64,12 @@ const LoginScreen = () => {
 
             <Text style={style.textBottom}>
                 Não tem uma conta? 
-                <Text style={{ color: themas.colors.primary }}> Criar conta</Text>
+                <Text 
+                    style={{ color: themas.colors.primary }} 
+                    onPress={() => navigation.navigate('Register')} // Navegar para Register
+                >
+                    Criar conta
+                </Text>
             </Text>
         </View>
     );

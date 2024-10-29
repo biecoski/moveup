@@ -1,14 +1,12 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/pages/login'; 
+import AppRoutes from './src/AppRoutes'; // Importando as rotas
 
 export default function App() {
   return (
-    
-     <Login />
+    <>
+      <StatusBar style="auto" />
+      <AppRoutes /> {/* Renderizando as rotas */}
+    </>
   );
 }
-
-const styles = StyleSheet.create({
- 
-});

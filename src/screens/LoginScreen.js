@@ -3,12 +3,12 @@ import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-nat
 import { style } from '../pages/login/style'; 
 import Logo from '../../assets/logo.png'; 
 import { themas } from "../global/themes"; 
-import { useNavigation } from '@react-navigation/native'; // Importar useNavigation
+import { useNavigation } from '@react-navigation/native'; 
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigation = useNavigation(); // Usar o hook de navegação
+    const navigation = useNavigation(); 
 
     const getLogin = () => {
         if (!email || !password) {
@@ -18,7 +18,7 @@ const LoginScreen = () => {
 
         if (email === 'emilybiecoski@hotmail.com' && password === '123456') {
             console.log('Logado com sucesso');
-            // Aqui você pode adicionar a navegação para a próxima tela ou outra ação
+            
         } else {
             console.log('Usuário incorreto');
         }
@@ -54,7 +54,15 @@ const LoginScreen = () => {
                         onChangeText={setPassword}
                     />
                 </View>
+                
             </View>
+
+            
+            <TouchableOpacity onPress={() => Alert.alert('Redirecionando para recuperação de senha')}>
+    <Text style={style.forgotPasswordText}>Esqueceu sua senha?</Text>
+</TouchableOpacity>
+
+            
 
             <View style={style.boxBottom}>
                 <TouchableOpacity style={style.button} onPress={getLogin}> 
@@ -62,17 +70,19 @@ const LoginScreen = () => {
                 </TouchableOpacity>
             </View>
 
-            <Text style={style.textBottom}>
-                Não tem uma conta? 
-                <Text 
-                    style={{ color: themas.colors.primary }} 
-                    onPress={() => navigation.navigate('Register')} // Navegar para Register
-                >
-                    Criar conta
-                </Text>
-            </Text>
+<TouchableOpacity 
+    style={[style.button, { backgroundColor: themas.colors.secundary, marginTop: 50 }]} 
+    onPress={() => navigation.navigate('Register')}
+>
+    <Text style={[style.textButton, { color: 'white', fontWeight: '' }]}>
+        Não tem uma conta?{' '}
+        <Text style={{ color: '#8C08EB', fontWeight: 'Montserrat', textDecorationLine: 'underline' }}>Criar Conta</Text>
+    </Text>
+</TouchableOpacity>
         </View>
     );
 };
 
 export default LoginScreen;
+
+

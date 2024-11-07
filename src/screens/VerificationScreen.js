@@ -7,14 +7,14 @@ import { themas } from '../global/themes';
 import { useNavigation, useRoute } from '@react-navigation/native'; 
 
 const VerificationScreen = () => {
-    const [verificationCode, setVerificationCode] = useState(''); // Código de verificação
-    const [agreeTerms, setAgreeTerms] = useState(false); // Estado para aceitar os termos
+    const [verificationCode, setVerificationCode] = useState(''); 
+    const [agreeTerms, setAgreeTerms] = useState(false); 
     const navigation = useNavigation(); 
     const route = useRoute(); 
     const { email } = route.params; 
 
     const handleVerification = () => {
-        if (verificationCode === '123456' && agreeTerms) { // Verificar se o código e termos estão corretos
+        if (verificationCode === '123456' && agreeTerms) {  
             Alert.alert('Código verificado com sucesso!');
             navigation.navigate('Login'); 
         } else {

@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
-import { style } from './style'; 
-import Logo from '../../assets/logo.png'; 
-import { themas } from "../../global/themes"; 
+import { style } from './style';
+import Logo from '../../assets/logo.png';
+import { themas } from "../../global/themes";
 
 const LoginScreen = () => {
-    const [email, setEmail] = useState(''); // Estado para o email
-    const [password, setPassword] = useState(''); // Estado para a senha
+    const [email, setEmail] = useState(''); 
+    const [password, setPassword] = useState('');
 
     function getLogin() {
         try {
-            // Verifica se os campos obrigatórios estão preenchidos
+            
             if (!email || !password) {
                 console.log('Informe os campos obrigatórios');
                 return;
-            }   
+            }
 
             // Verifica as credenciais
             if (email === 'emilybiecoski@hotmail.com' && password === '123456') {
                 console.log('Logado com sucesso');
-                // Aqui você pode adicionar a navegação para a próxima tela ou outra ação
+               
             } else {
                 console.log('Usuário incorreto');
             }
@@ -43,11 +43,12 @@ const LoginScreen = () => {
                         placeholder="Username"
                         placeholderTextColor="grey"
                         value={email}
-                        onChangeText={(e)=>setEmail(e)}
+                        onChangeText={(e) => setEmail(e)}
                     />
                 </View>
 
                 <Text style={style.titleInput}>Senha</Text>
+                
                 <View style={style.boxInput}>
                     <TextInput
                         style={style.input}
@@ -55,21 +56,19 @@ const LoginScreen = () => {
                         placeholderTextColor="grey"
                         secureTextEntry={true}
                         value={password}
-                        onChangeText={(e)=>setPassword(e)}
+                        onChangeText={(e) => setPassword(e)}
                     />
                 </View>
             </View>
 
             <View style={style.boxBottom}>
-                <TouchableOpacity style={style.button} onPress={getLogin}> 
+                <TouchableOpacity style={style.button} onPress={getLogin}>
                     <Text style={style.textButton}>Acessar</Text>
                 </TouchableOpacity>
             </View>
+            
 
-            <Text style={style.textBottom}>
-                Não tem uma conta? 
-                <Text style={{ color: themas.colors.primary }}> Criar conta</Text>
-            </Text>
+
         </View>
     );
 };
